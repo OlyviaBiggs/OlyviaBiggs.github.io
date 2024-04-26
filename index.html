@@ -93,40 +93,60 @@
     @media only screen and (max-width: 300px) {
     .prev, .next,.text {font-size: 11px}
     }
+
+    /* container with text */
+    .container {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
+
+    /* the middle text */
+    .centered { 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     </style>
     </head>
     <body>
 
     <div class="slideshow-container">
 
-    <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
-    <img src="Cleveland-skyline.jpg" style="width:1000px">
-    <div class="text">Caption Text</div>
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img src="Cleveland-skyline.jpg" style="width:1000px">
+            <div class="container">
+                <div class="text centered">Caption Text</div>
+            </div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img src="Settlers_Landing.jpg" style="width:1000px">
+            <div class="container">div class="text centered">Caption Two</div>
+        </div>
     </div>
 
-    <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <img src="Settlers_Landing.jpg" style="width:1000px">
-    <div class="text">Caption Two</div>
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img src="Tower_City.jpg" style="width: 1000px;">
+            <div class="container">
+                <div class="text centered">Caption Three</div>
+        </div>
     </div>
 
-    <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <img src="Tower_City.jpg" style="width: 1000px;">
-    <div class="text">Caption Three</div>
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
-
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
     </div>
     <br>
 
     <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span> 
-    <span class="dot" onclick="currentSlide(2)"></span> 
-    <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
     </div>
 
     <script>
