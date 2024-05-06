@@ -98,9 +98,9 @@
         .txt-img-container-SS {
             position: relative;
             text-align: center;
-            color: greenyellow;
+            background-color: cornsilk;
             width: 100%;
-            max-width: 600px;
+            max-width: 1000px;
         }
 
         /* Centered */
@@ -116,13 +116,14 @@
             display: block;
             width: 100%;
             height: auto;
+            background-color: black;
         }
 
         /* the overlay effect for the slideshow images - lays on top of the container and over the img */
         .txt-img-overlay-SS {
             position: absolute;
             bottom: 0;
-            background: rgb(0,0,0);
+            background: rgb(157, 157, 157);
             background: rgba(0,0,0,0.5); /*black see-through*/
             color: #f1f1f1;
             width: 100%;
@@ -145,7 +146,8 @@
                     <div class="txt-img-container-SS">
                         <div class="numbertext">1 / 3</div>
                         <img src="Cleveland-skyline.jpg" style="width:1000px" class="img-SS">
-                        <div class="txt-img-overlay-SS">Hi I'm Olyvia</div>
+                        <div class="txt-img-centered-SS">
+                            <div class="txt-img-overlay-SS">I"m Olvyia again blablabla</div>
                         </div>
                     </div>
                 </div>
@@ -170,8 +172,8 @@
                     </div>
                 </div>
                 
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
+                <a class="prev" onclick="plusSlides(-1)"><</a>
+                <a class="next" onclick="plusSlides(1)">></a>
             </div>
             <br>
             
