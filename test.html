@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title of the document</title>
+    <style>
+
+      /* CSS */
+
+
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+      }
+
+
+      /* SLIDESHOW CSS */
+      .n1 {
+        background-image: url(Cleveland-skyline.jpg);
+      }
+      .n2 {
+        background-image: url(Tower_City.jpg);
+      }
+      .n3 {
+        background-image: url(Settlers_Landing.jpg);
+      }
+      .n4 {
+        background-image: url(Typewriter.jpeg);
+      }
+      .n5 {
+        background-image: url(Old-books.jpeg);
+      }
+      input {
+        position: absolute;
+        opacity: 0;
+        margin-top: 45%;
+        cursor: pointer;
+      }
+      label {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border: solid 2px black;
+        border-radius: 999px;
+        background-color: transparent;
+        margin: 95vh 6px 0 6px;
+        z-index: 2;
+        cursor: pointer;
+        transition-duration: .4s;
+      }
+      .slide {
+        position: absolute;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: translateX(-100%);
+        transition-duration: .4s;
+        opacity: 1;
+      }
+      input:checked + label {
+        background-color: #ffffff;
+      }
+      input:focus + label {
+        box-shadow: 0 0 0 2px #cccccc, 0 0 18px #ffffff;
+      }
+      input:checked ~ .slide {
+        transform: translateX(100%);
+      }
+      input:checked + label + .slide {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        transition: .4s;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <!-- HTML -->
+
+
+    <!-- SLIDESHOW HTML -->
+    <input type="radio" id="trigger1" name="slider" checked autofocus>
+    <label for="trigger1"></label>
+    <div class="slide n1"></div>
+    <input type="radio" id="trigger2" name="slider">
+    <label for="trigger2"></label>
+    <div class="slide n2"></div>
+    <input type="radio" id="trigger3" name="slider">
+    <label for="trigger3"></label>
+    <div class="slide n3"></div>
+    <input type="radio" id="trigger4" name="slider">
+    <label for="trigger4"></label>
+    <div class="slide n4"></div>
+    <input type="radio" id="trigger5" name="slider">
+    <label for="trigger5"></label>
+    <div class="slide n5"></div>
+    <!-- THE NEXT AND PREVIOUS BUTTONS -->
+    <a class="prev" onclick="plusSlides(-1)"><</a>
+    <a class="prev" onclick="plusSlides(1)">></a>
+
+
+
+    <script>
+
+      // JAVASCRIPT \\
+
+    </script>
+
+  </body>
+</html>
