@@ -1,221 +1,270 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-        * {box-sizing: border-box}
-        body {font-family: Verdana, sans-serif; margin:0}
-        .mySlides {display: none}
-        img {vertical-align: middle;}
-        
-        body, html {
-            height: 100%;
-        }
+  <head>
+    <title>Olyvia Biggs' Personal Website</title>
+    <style>
 
-        /* Slideshow container */
-        .slideshow-container {
-            max-width: 1000px;
-            position: relative;
-            margin: auto;
-        }
+      /* CSS */
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
 
-        /* Next & previous buttons */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-        }
 
-        /* Position the "next button" to the right */
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
+      .slides {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
 
-        /* On hover, add a black background color with a little bit see-through */
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
-        }
+      /* SLIDESHOW CSS */
+      .n1 {
+        background-image: url(Cleveland-skyline.jpg);
+      }
+      .n2 {
+        background-image: url(Tower_City.jpg);
+      }
+      .n3 {
+        background-image: url(Settlers_Landing.jpg);
+      }
+      .n4 {
+        background-image: url(Typewriter.jpeg);
+      }
+      .n5 {
+        background-image: url(Old-books.jpeg);
+      }
+      
+      input {
+        position: absolute;
+        opacity: 0;
+        margin-top: 10%;
+        cursor: pointer;
+      }
+      label {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border: solid 2px white;
+        border-radius: 999px;
+        background-color: transparent;
+        margin: 95vh 6px 0 6px;
+        z-index: 2;
+        cursor: pointer;
+        transition-duration: .4s;
+      }
+      .slide {
+        position: absolute;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: translateX(-100%);
+        transition-duration: .4s;
+        opacity: 1;
+      }
+      input:checked + label {
+        background-color: #ffffff;
+      }
+      input:focus + label {
+        box-shadow: 0 0 0 2px #cccccc, 0 0 18px #ffffff;
+      }
+      input:checked ~ .slide {
+        transform: translateX(100%);
+      }
+      input:checked + label + .slide {
+        transform: translateX(0);
+        opacity: 1;
+      }
 
-        /* Caption text */
-        .text {
-            color: #f2f2f2;
-            font-size: 15px;
-            padding: 8px 12px;
-            position: absolute;
-            bottom: 8px;
-            width: 100%;
-            text-align: center;
-        }
 
-        /* Number text (1/3 etc) */
-        .numbertext {
-            color: #f2f2f2;
-            font-size: 12px;
-            padding: 8px 12px;
-            position: absolute;
-            top: 0;
-        }
+      /* ARROWS FOR SLIDESHOW*/
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2em;
+        color: white;
+        z-index: 3;
+        cursor: pointer;
+        user-select: none;
+      }
+      .arrow-left {
+        left: 10px;
+      }
+      .arrow-right {
+        right: 10px;
+      }
 
-        /* The dots/bullets/indicators */
-        .dot {
-            cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
+      /* THE SLIDESHOW'S TEXT */
+      .slide-txt {
+        /*POSITIONING TXT*/
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-        .active, .dot:hover {
-            background-color: #717171;
-        }
+        /*STYLING TEXT*/
+        font-size: 150%;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 100;
+      }
 
-        /* Fading animation */
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
+      .overlay-slide-txt {
+        position: absolute;
+        bottom: 0;
+        background: rgb(157, 157, 157);
+        background: rgba(0,0,0,0.5); /*black see-through*/
+        color: #f1f1f1;
+        width: 100%;
+        transition: .5s ease;
+        opacity: 0;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+      }
+      /*MAKES THE OVERLAY TEXT APPEAR WHEN HOVERED OVER */
+      .slide-txt:hover, .overlay-slide-txt {
+        opacity: 1;
+      }
 
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
 
-        /* On smaller screens, decrease text size */
-        @media only screen and (max-width: 300px) {
-            .prev, .next,.text {font-size: 11px}
-        }
 
-        /* container to hold TEXT! */
-        .txt-img-container-SS {
-            position: relative;
-            text-align: center;
-            background-color: black;
-            width: 100%;
-            max-width: 1000px;
-        }
+      /* ABOUT ME SECTION */
+      .about-me {
+        padding: 20px;
+        background-color: #f4f4f4;
+        height: 100vh;
+        text-align: left;
+      }
+      .about-me h2 {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+      .about-me p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+        line-height: 1.6em;
+      }
+      .scroll-button {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-        /* Centered */
-        .txt-img-centered-SS {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%)
-        }
+    </style>
+  </head>
 
-        /* make the img for the slideshow responsive when hovered over*/
-        .image {
-            display: block;
-            width: 100%;
-            height: auto;
-            background-color: black;
-        }
+  <body>
 
-        /* the overlay effect for the slideshow images - lays on top of the container and over the img */
-        .txt-img-overlay-SS {
-            position: absolute;
-            bottom: 0;
-            background: rgb(157, 157, 157);
-            background: rgba(0,0,0,0.5); /*black see-through*/
-            color: #f1f1f1;
-            width: 100%;
-            transition: .5s ease;
-            opacity: 0;
-            color: white;
-            font-size: 20px;
-            text-align: center;
-        }
+    <!-- HTML -->
 
-        /*when you hoves the mouse over the slideshow container, fade in the overlay title */
-        .txt-img-container-SS:hover .txt-img-overlay-SS {
-            opacity: 1;
-        }
-        </style>
-        </head>
-        <body>
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <div class="txt-img-container-SS">
-                        <div class="numbertext">1 / 3</div>
-                        <img src="Cleveland-skyline.jpg" style="width: 100%" class="img-SS">
-                        <div class="txt-img-centered-SS">
-                            <div class="txt-img-overlay-SS">I"m Olvyia again blablabla</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mySlides fade">
-                    <div class="txt-img-container-SS">
-                        <div class="numbertext">2 / 3</div>
-                        <img src="Settlers_Landing.jpg" style="width:100%px" class="img-SS">
-                        <div class="txt-img-centered-SS">
-                            <div class="txt-img-overlay-SS">I"m Olvyia again blablabla</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mySlides fade">
-                    <div class="txt-img-container-SS"> 
-                        <div class="numbertext">3 / 3</div>
-                        <img src="Tower_City.jpg" style="width: 100%;" class="img-SS">
-                        <div class="txt-img-centered-SS">
-                            <div class="txt-img-overlay-SS">blablabla I'm Olyvia</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <a class="prev" onclick="plusSlides(-1)"><</a>
-                <a class="next" onclick="plusSlides(1)">></a>
-            </div>
-            <br>
-            
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span> 
-                <span class="dot" onclick="currentSlide(2)"></span> 
-                <span class="dot" onclick="currentSlide(3)"></span> 
-            </div>
-            
-            <script>
-            function showSlides(n) {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                let dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {slideIndex = 1}    
-                if (n < 1) {slideIndex = slides.length}
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";  
-                }
-                
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                
-                slides[slideIndex-1].style.display = "block";  
-                dots[slideIndex-1].className += " active";
-            }
-            
-            let slideIndex = 1;
-            showSlides(slideIndex);
-            
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
-            }
 
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        </script>
-    </body>
+    <!-- SLIDESHOW HTML -->
+    <div class="slides">
+      <input type="radio" id="trigger1" name="slider" checked autofocus>
+      <label for="trigger1"></label>
+      <div class="slide n1">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+
+      <input type="radio" id="trigger2" name="slider">
+      <label for="trigger2"></label>
+      <div class="slide n2">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+
+      <input type="radio" id="trigger3" name="slider">
+      <label for="trigger3"></label>
+      <div class="slide n3">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+
+      <input type="radio" id="trigger4" name="slider">
+      <label for="trigger4"></label>
+      <div class="slide n4">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+
+      <input type="radio" id="trigger5" name="slider">
+      <label for="trigger5"></label>
+      <div class="slide n5">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARROW BUTTONS FOR SLIDESHOW -->
+    <div class="arrow arrow-left" onclick="prevSlide()">&#10094;</div>
+    <div class="arrow arrow-right" onclick="nextSlide()">&#10095;</div>
+
+
+    <!-- SCROLL BUTTON-->
+    <button class="scroll-button" onclick="scrollToAboutMe()">About Me</button>
+
+    <!-- ABOUT ME SECTION -->
+    <section class="about-me" id="about-me">
+      <h2>About Me</h2>
+      <p>
+        I'm Olyvia.... blah blah blah...
+      </p>
+      <p>
+        I like writing...
+      </p>
+      <p>
+        I like ice skating...
+      </p>
+    </section>
+
+
+    <script>
+
+      // JAVASCRIPT 
+
+      // ARROW KEYS FOR SLIDESHOW
+      let currentSlide = 1;
+      const totalSlides = 5;
+
+      function showSlide(index) {
+        document.getElementById('trigger' + index).checked = true;
+      }
+
+      function nextSlide() {
+        currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = currentSlide <= 1 ? totalSlides : currentSlide - 1;
+        showSlide(currentSlide);
+      }
+
+    </script>
+
+  </body>
 </html>

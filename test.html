@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title of the document</title>
+    <title>Olyvia Biggs' Personal Website</title>
     <style>
 
       /* CSS */
-
-
       body,
       html {
         padding: 0;
@@ -14,9 +12,16 @@
         width: 100%;
         height: 100%;
         text-align: center;
-        overflow: hidden;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
       }
 
+
+      .slides {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
 
       /* SLIDESHOW CSS */
       .n1 {
@@ -34,17 +39,18 @@
       .n5 {
         background-image: url(Old-books.jpeg);
       }
+      
       input {
         position: absolute;
         opacity: 0;
-        margin-top: 45%;
+        margin-top: 10%;
         cursor: pointer;
       }
       label {
         display: inline-block;
         width: 12px;
         height: 12px;
-        border: solid 2px black;
+        border: solid 2px white;
         border-radius: 999px;
         background-color: transparent;
         margin: 95vh 6px 0 6px;
@@ -80,19 +86,86 @@
         opacity: 1;
       }
 
-      .prev, .next {
-        cursor: pointer;
+
+      /* ARROWS FOR SLIDESHOW*/
+      .arrow {
         position: absolute;
         top: 50%;
-        width: auto;
-        margin-top: -22px;
-        padding: 16px;
-        color: black;
-        font-weight: bold;
-        font-size: 18px;
-        transition: .4s;
-        border-radius: 0 3px 3px 0;
+        transform: translateY(-50%);
+        font-size: 2em;
+        color: white;
+        z-index: 3;
+        cursor: pointer;
         user-select: none;
+      }
+      .arrow-left {
+        left: 10px;
+      }
+      .arrow-right {
+        right: 10px;
+      }
+
+      /* THE SLIDESHOW'S TEXT */
+      .slide-txt {
+        /*POSITIONING TXT*/
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        /*STYLING TEXT*/
+        font-size: 150%;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 100;
+      }
+
+      .overlay-slide-txt {
+        position: absolute;
+        bottom: 0;
+        background: rgb(157, 157, 157);
+        background: rgba(0,0,0,0.5); /*black see-through*/
+        color: #f1f1f1;
+        width: 100%;
+        transition: .5s ease;
+        opacity: 0;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+      }
+      /*MAKES THE OVERLAY TEXT APPEAR WHEN HOVERED OVER */
+      .slide-txt:hover, .overlay-slide-txt {
+        opacity: 1;
+      }
+
+
+
+      /* ABOUT ME SECTION */
+      .about-me {
+        padding: 20px;
+        background-color: #f4f4f4;
+        height: 100vh;
+        text-align: left;
+      }
+      .about-me h2 {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+      .about-me p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+        line-height: 1.6em;
+      }
+      .scroll-button {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
       }
 
     </style>
@@ -104,30 +177,92 @@
 
 
     <!-- SLIDESHOW HTML -->
-    <input type="radio" id="trigger1" name="slider" checked autofocus>
-    <label for="trigger1"></label>
-    <div class="slide n1"></div>
-    <input type="radio" id="trigger2" name="slider">
-    <label for="trigger2"></label>
-    <div class="slide n2"></div>
-    <input type="radio" id="trigger3" name="slider">
-    <label for="trigger3"></label>
-    <div class="slide n3"></div>
-    <input type="radio" id="trigger4" name="slider">
-    <label for="trigger4"></label>
-    <div class="slide n4"></div>
-    <input type="radio" id="trigger5" name="slider">
-    <label for="trigger5"></label>
-    <div class="slide n5"></div>
-    <!-- THE NEXT AND PREVIOUS BUTTONS -->
-    <a class="prev" onclick="plusSlides(-1)"><</a>
-    <a class="prev" onclick="plusSlides(1)">></a>
+    <div class="slides">
+      <input type="radio" id="trigger1" name="slider" checked autofocus>
+      <label for="trigger1"></label>
+      <div class="slide n1">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
 
+      <input type="radio" id="trigger2" name="slider">
+      <label for="trigger2"></label>
+      <div class="slide n2">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+
+      <input type="radio" id="trigger3" name="slider">
+      <label for="trigger3"></label>
+      <div class="slide n3">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+
+      <input type="radio" id="trigger4" name="slider">
+      <label for="trigger4"></label>
+      <div class="slide n4">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+
+      <input type="radio" id="trigger5" name="slider">
+      <label for="trigger5"></label>
+      <div class="slide n5">
+        <div class="slide-txt">
+          <div class="overlay-slide-txt">Hello world!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARROW BUTTONS FOR SLIDESHOW -->
+    <div class="arrow arrow-left" onclick="prevSlide()">&#10094;</div>
+    <div class="arrow arrow-right" onclick="nextSlide()">&#10095;</div>
+
+
+    <!-- SCROLL BUTTON-->
+    <button class="scroll-button" onclick="scrollToAboutMe()">About Me</button>
+
+    <!-- ABOUT ME SECTION -->
+    <section class="about-me" id="about-me">
+      <h2>About Me</h2>
+      <p>
+        I'm Olyvia.... blah blah blah...
+      </p>
+      <p>
+        I like writing...
+      </p>
+      <p>
+        I like ice skating...
+      </p>
+    </section>
 
 
     <script>
 
-      // JAVASCRIPT \\
+      // JAVASCRIPT 
+
+      // ARROW KEYS FOR SLIDESHOW
+      let currentSlide = 1;
+      const totalSlides = 5;
+
+      function showSlide(index) {
+        document.getElementById('trigger' + index).checked = true;
+      }
+
+      function nextSlide() {
+        currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = currentSlide <= 1 ? totalSlides : currentSlide - 1;
+        showSlide(currentSlide);
+      }
 
     </script>
 
